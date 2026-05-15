@@ -6,8 +6,7 @@ import Sidebar from './components/Sidebar';
 const savedUserId = localStorage.getItem('shared_grid_userId') || Math.random().toString(36).substring(2, 15);
 localStorage.setItem('shared_grid_userId', savedUserId);
 
-const socket = io('https://assign-1-one.vercel.app', {
-  path: '/_/backend/socket.io',
+const socket = io('https://assign-1-l3s6.onrender.com', {
   auth: { userId: savedUserId }
 });
 
@@ -88,12 +87,6 @@ function App() {
       socket.off('reset_vote_failed');
     };
   }, []);
-
-  useEffect(() => {
-    console.log('conn', connected);
-    console.log('socket', socket)
-
-  }, [connected]);
 
   const handleBlockClick = (index) => {
     if (!connected) return;
