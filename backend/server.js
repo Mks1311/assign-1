@@ -115,7 +115,7 @@ io.on('connection', (socket) => {
 
   socket.on('request_reset', () => {
     if (resetVoteActive) return;
-    
+
     resetVoteActive = true;
     resetVotes.clear();
     resetVotes.add(socket.userId);
@@ -146,7 +146,7 @@ io.on('connection', (socket) => {
   function checkResetVote() {
     const onlineUsers = Object.values(users).filter(u => u.online);
     const totalOnline = onlineUsers.length;
-    
+
     if (resetVotes.size > totalOnline / 2) {
       blocks.fill(null);
       for (const u in users) {
@@ -169,4 +169,8 @@ io.on('connection', (socket) => {
 
 server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+});
+
+app.use('/api', (req, res) => {
+  res.send('Hello World!');
 });
