@@ -7,7 +7,7 @@ const Block = memo(({ index, block, onClick }) => {
     <div
       onClick={() => onClick(index)}
       className={`
-        w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14
+        w-10 h-10
         cursor-pointer transition-all duration-200 ease-out
         hover:scale-105 hover:z-10 hover:shadow-md
         ${!isCaptured ? 'bg-zinc-800 hover:bg-zinc-700' : ''}
