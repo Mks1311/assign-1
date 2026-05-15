@@ -6,7 +6,7 @@ import Sidebar from './components/Sidebar';
 const savedUserId = localStorage.getItem('shared_grid_userId') || Math.random().toString(36).substring(2, 15);
 localStorage.setItem('shared_grid_userId', savedUserId);
 
-const socket = io('http://localhost:3001', {
+const socket = io('https://assign-1-one.vercel.app/_/backend', {
   auth: { userId: savedUserId }
 });
 
@@ -117,7 +117,7 @@ function App() {
     <div className="flex h-[100dvh] w-screen overflow-hidden bg-zinc-950 text-zinc-50 relative selection:bg-zinc-800 selection:text-zinc-100">
       {/* Main Content Area */}
       <main className="flex-1 flex flex-col relative w-full overflow-hidden">
-        
+
         {/* Modern Minimalist Header */}
         <header className="flex-none h-16 border-b border-zinc-800/50 bg-zinc-950/80 backdrop-blur-md flex items-center justify-between px-4 sm:px-6 z-20">
           <div className="flex items-center gap-3">
@@ -126,19 +126,19 @@ function App() {
             </h1>
           </div>
           <div className="flex items-center gap-2 sm:gap-3">
-            <button 
+            <button
               onClick={handleResetGrid}
               className="px-3 py-1.5 sm:px-4 sm:py-2 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 rounded-md text-sm font-medium transition-colors shadow-sm"
             >
               Reset
             </button>
-            <div 
+            <div
               className="px-3 py-1.5 sm:px-4 sm:py-2 rounded-md font-medium flex items-center gap-2 border border-zinc-800 bg-zinc-900/30 shadow-sm text-sm"
             >
               <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: me.color }}></div>
               <span className="hidden sm:inline text-zinc-300">{me.name}</span>
             </div>
-            <button 
+            <button
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
               className="md:hidden p-2 -mr-2 rounded-md hover:bg-zinc-800 text-zinc-400 transition-colors"
             >
@@ -167,24 +167,24 @@ function App() {
 
         {/* Grid Container */}
         <div className="flex-1 flex items-center justify-center overflow-auto p-4 sm:p-8 bg-zinc-950/50">
-          <Grid 
-            size={gridSize} 
-            blocks={blocks} 
-            onBlockClick={handleBlockClick} 
+          <Grid
+            size={gridSize}
+            blocks={blocks}
+            onBlockClick={handleBlockClick}
           />
         </div>
       </main>
 
       {/* Mobile Overlay */}
       {isSidebarOpen && (
-        <div 
-          className="fixed inset-0 bg-black/60 z-30 md:hidden backdrop-blur-sm transition-opacity" 
+        <div
+          className="fixed inset-0 bg-black/60 z-30 md:hidden backdrop-blur-sm transition-opacity"
           onClick={() => setIsSidebarOpen(false)}
         />
       )}
 
       {/* Sidebar Drawer */}
-      <aside 
+      <aside
         className={`
           fixed inset-y-0 right-0 z-40 w-72 sm:w-80 bg-zinc-950 border-l border-zinc-800/50
           transform transition-transform duration-300 ease-in-out
